@@ -285,7 +285,9 @@ class TaxonomyTerm extends BaseTerm
 
             // provide description for different combination of states from the lang file
             $singleSelectDescriptionKey = 'SingleSelect' . ($checked ? '_Checked' : '') . ($readonly ? '_Readonly' : '');
-            $singleSelectField->setDescription($this->_t($singleSelectDescriptionKey, $taggedClass));
+            $description = Config::get(TaxonomyTerm::class)[$singleSelectDescriptionKey];
+            $description = sprintf($description, $taggedClass);
+            $singleSelectField->setDescription($description);
         }
 
 
